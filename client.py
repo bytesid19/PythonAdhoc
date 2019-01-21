@@ -1,28 +1,26 @@
-#!usr/bin/env python2
-
-
 import socket
+import select
+import sys
 
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+if len(sys.argv) != 3:
+    print "Correct usage: script, IP address, port number"
+    exit()
+IP_address = str(sys.argv[1])
+Port = int(sys.argv[2])
+server.connect((IP_address, Port))
 
-def client_program():
-    host = socket.gethostname()  # as both code is running on same pc
-    port = 6060  # socket server port number
-
-    client_socket = socket.socket()  # instantiate
-    client_socket.connect((host, port))  # connect to the server
-
-    message = raw_input(" -> ")  # take input
-
-    while message.lower().strip() != 'bye':
-        client_socket.send(message.encode())  # send message
-        data = client_socket.recv(1024).decode()  # receive response
-
-        print('Received from server: ' + data)  # show in terminal
-
-        message = raw_input(" -> ")  # again take input
-
-    client_socket.close()  # close the connection
-
-
-if __name__ == '__main__':
-    client_program()
+while True:
+    sockets_list = [sys.stdin, server]
+    read_sockets,write_socket, error_socket = select.select(sockets_list, [], [])
+    for socks in read_sockets:
+        if socks == server:
+            message = socks.recv(2048)
+            print message
+        else:
+            message = sys.stdin.readline()
+            server.send(message)
+            sys.stdout.write("<You>")
+            sys.stdout.write(message)
+            sys.stdout.flush()
+server.close()

@@ -1,0 +1,4 @@
+1- code to send a msg from one system to all systems(broadcast a single msg)
+2- code to transfer file/folder from one machine to other (source to destination)(socket programming use)
+3- jab tak data yahan se nai ata and reply nai ata vapas rec ka toh aur data nai bhj pata sender ka..overcome kaise kre? (uninterrupted receive and send)
+
