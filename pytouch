@@ -1,0 +1,14 @@
+#!/usr/bin/python2
+
+import os,sys
+
+c_name=sys.argv[1:]
+
+for i in c_name:
+	if os.path.isdir(i):
+		print "a directory already exists with the name "+i
+	elif os.path.isfile(i):
+		print "a file aready exists with the name "+i
+	else:
+		os.mkdir(i)
+

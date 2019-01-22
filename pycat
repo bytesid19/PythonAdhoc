@@ -1,0 +1,11 @@
+#!/usr/bin/python2
+
+import os,sys
+
+c_name=sys.argv[1:]
+
+for i in c_name:
+	f=open(i,'r')
+	print f.read()
+	f.close()
+

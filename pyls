@@ -1,0 +1,11 @@
+#!/usr/bin/python2
+
+import os
+
+pd=os.getcwd()
+files=os.listdir(pd)
+
+#print files
+for i in files:
+	print i+"    ",
+
