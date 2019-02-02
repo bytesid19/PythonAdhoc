@@ -14,6 +14,8 @@ while  3  >  2	 :
 
 	if  check ==  0 :
 		print  "success"
-		s.sendto("sahi command",data[1])
+                inp=raw_input()
+		s.sendto(inp,data[1])
 	else :
-		s.sendto(data[0]+" not found",data[1])
+                inp=raw_input()
+		s.sendto(inp+" not found",data[1])
